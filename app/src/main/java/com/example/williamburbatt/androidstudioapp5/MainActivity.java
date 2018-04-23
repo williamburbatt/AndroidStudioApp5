@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         String [] attraction = {"a","b","c","d","e"};
         //Need the adapter and to tell it what kind of list it's going into
-        ArrayAdapter<String> arr = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,attraction);
+        ArrayAdapter<String> arr = new ArrayAdapter<String>(this, R.layout.activity_listview,attraction);
         //put them all into listview
         ListView lv = (ListView)findViewById(R.id.list1);
         lv.setAdapter(arr);
