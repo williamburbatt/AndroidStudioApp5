@@ -29,10 +29,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position,
                                     long id) {
-
-                Intent intent = new Intent(MainActivity.this, test2.class);
-                intent.putExtra("pos", position);
-                startActivity(intent);
+                switch (position) {
+                    case 0:
+                        //this tests new page passing position
+                        Intent intent = new Intent(MainActivity.this, test2.class);
+                        intent.putExtra("pos", position);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        //this tests linking to a website
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://sxu.edu")));
+                        break;
+                    case 2:
+                        Toast.makeText(MainActivity.this, "placeholder: " + position, Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(MainActivity.this, "placeholder: " + position, Toast.LENGTH_LONG).show();
+                        break;
+                    case 4:
+                        Toast.makeText(MainActivity.this, "placeholder: " + position, Toast.LENGTH_LONG).show();
+                        break;
+                }
             }
         });
     }
