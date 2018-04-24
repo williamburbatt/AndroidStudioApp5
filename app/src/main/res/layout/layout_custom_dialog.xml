@@ -7,44 +7,56 @@
     android:padding="15dp"
     android:background="@drawable/popup_background"
     >
-
+<!--
     <LinearLayout
+        android:id="@+id/h1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         >
+-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3"
-            android:text="PlaceholderTitle"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/montserrat" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/h1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:text="PlaceholderTitle"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:fontFamily="montserrat"
+        android:textColor="#000"
+        android:textAlignment="center"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".3"
-            android:text="If you would like to edit this information please contact support@changedapps.com"
-            android:textAlignment="center"
-            android:textColor="#565454"
-            android:textStyle="bold"
-            app:fontFamily="@font/montserrat" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="If you would like to edit this information"
+        android:textAlignment="center"
+        android:textColor="#828393"
+        android:textStyle="bold"
+        app:fontFamily="montserrat" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="please contact us by email at: "
+        android:textAlignment="center"
+        android:textColor="#828393"
+        android:textStyle="bold"
+        app:fontFamily="montserrat" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="support@changedapps.com"
+        android:textAlignment="center"
+        android:textColor="#828393"
+        android:textStyle="bold"
+        app:fontFamily="montserrat" />
 
     <Button
         android:id="@+id/button"
@@ -54,7 +66,9 @@
         android:background="@drawable/button_drawable"
         android:text="@android:string/ok"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
+
+    <!-- </LinearLayout>-->
 
 </LinearLayout>

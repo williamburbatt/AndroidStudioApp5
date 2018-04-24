@@ -11,11 +11,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 //dont change this... crashes too much
 public class MainActivity extends AppCompatActivity {
@@ -41,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, test2.class);
                         intent.putExtra("pos", position);
                         startActivity(intent);**/
-                        popUp();
+                        popUp("Edit Name");
                         break;
                     case 1:
                         //this tests linking to a website
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://sxu.edu")));
+                        popUp("Edit Date of Birth");
                         break;
                     case 2:
-                        Toast.makeText(MainActivity.this, "placeholder: " + position, Toast.LENGTH_LONG).show();
+                        popUp("Edit Address");
                         break;
                     case 3:
                         Toast.makeText(MainActivity.this, "placeholder: " + position, Toast.LENGTH_LONG).show();
@@ -72,12 +76,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void popUp(){
+    public void popUp(String s){
+
         LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
 //Inflate the view from a predefined XML layout (no need for root id, using entire layout)
         View layout = inflater.inflate(R.layout.layout_custom_dialog,null);
         float density=MainActivity.this.getResources().getDisplayMetrics().density;
-        final PopupWindow pw = new PopupWindow(layout, (int)density*480, (int)density*240, true);
+        final PopupWindow pw = new PopupWindow(layout, (int)density*480, (int)density*280, true);
+        ((TextView) layout.findViewById(R.id.h1)).setText(s);
         //Button to close the pop-up
         ((Button) layout.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
