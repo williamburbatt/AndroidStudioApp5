@@ -7,37 +7,51 @@
     android:background="@drawable/gradient"
     >
 
-    <ListView
-        android:id="@+id/list1"
-        android:layout_width="match_parent"
-        android:layout_height="338dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="229dp"
-        android:textSize="20sp"
-        app:fontFamily="montserrat"
-        />
-
     <TextView
         android:id="@+id/header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="65dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginTop="80dp"
         android:text="Settings"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:fontFamily="montserrat"/>
+        app:fontFamily="montserrat" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+        />
 
     <TextView
         android:id="@+id/header2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/header1"
-        android:layout_below="@+id/header1"
-        android:text="My Profile" />
+        android:layout_marginTop="135dp"
+        android:text="MY PROFILE"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:fontFamily="montserrat" />
+
+    <ListView
+        android:id="@+id/list1"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="80dp"
+        android:dividerHeight="3sp"
+        android:textSize="20sp"
+        app:fontFamily="montserrat" />
 
 </RelativeLayout>

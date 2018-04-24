@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -58,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        backButton();
+    }
+    public void backButton(){
+        ImageView back = (ImageView) findViewById(R.id.imageView);
+        back.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "To be implemented later ", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void popUp(){
@@ -65,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 //Inflate the view from a predefined XML layout (no need for root id, using entire layout)
         View layout = inflater.inflate(R.layout.layout_custom_dialog,null);
         float density=MainActivity.this.getResources().getDisplayMetrics().density;
-        final PopupWindow pw = new PopupWindow(layout, (int)density*240, (int)density*285, true);
+        final PopupWindow pw = new PopupWindow(layout, (int)density*480, (int)density*240, true);
         //Button to close the pop-up
         ((Button) layout.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
