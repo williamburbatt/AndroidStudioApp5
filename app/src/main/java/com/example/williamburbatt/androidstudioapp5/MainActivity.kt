@@ -1,80 +1,108 @@
 package com.example.williamburbatt.androidstudioapp5
 
 
+import android.accounts.Account
+import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 
 //This page was created by William A Burbatt 4/24/18
 //dont change this... crashes too much
 class MainActivity : AppCompatActivity() {
 
+    private var listAccounts = ArrayList<MyAccount>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        listAccounts.add(MyAccount(1, "JavaSampleApproach", "Java technology, Spring Framework - approach to Java by Sample."))
+        listAccounts.add(MyAccount(2, "Kotlin Android Tutorial", "Create tutorial for people to learn Kotlin Android. Kotlin is now an official language on Android. It's expressive, concise, and powerful. Best of all, it's interoperable with our existing Android languages and runtime."))
+        listAccounts.add(MyAccount(3, "Android Studio", "Android Studio 3.0 provides helpful tools to help you start using Kotlin. Convert entire Java files or convert code snippets on the fly when you paste Java code into a Kotlin file."))
+        listAccounts.add(MyAccount(4, "Java Android Tutorial", "Create tutorial for people to learn Java Android. Learn Java in a greatly improved learning environment with more lessons, real practice opportunity, and community support."))
+        listAccounts.add(MyAccount(5, "Spring Boot Tutorial", "Spring Boot help build stand-alone, production Spring Applications easily, less configuration then rapidly start new projects."))
 
-        val items = arrayOf("Name", "Date of Birth", "Address", "Placeholder One", "Placeholder Two")
-        //Need the adapter and to tell it what kind of list it's going into WAB
-        val arr = ArrayAdapter(this, R.layout.activity_listview, items)
-        //put them all into listview WAB
+        var accAdapter = AccountAdapter(this, listAccounts)
         val lv = findViewById<View>(R.id.list1) as ListView
-        lv.adapter = arr
-        lv.onItemClickListener = AdapterView.OnItemClickListener { a, v, position, id ->
-            when (position) {
-                0 ->
 
-                    //changed to method to popup screen, have to pass through header. WAB
-                    popUp("Edit Name")
-                1 ->
-                    //this tests linking to a website WAB
-                    popUp("Edit Date of Birth")
-                2 -> popUp("Edit Address")
-                3 -> Toast.makeText(this@MainActivity, "placeholder arr: $position", Toast.LENGTH_SHORT).show()
-                4 -> Toast.makeText(this@MainActivity, "placeholder arr: $position", Toast.LENGTH_SHORT).show()
+        lv.adapter = accAdapter
+        lv.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+            Toast.makeText(this, "Click on " + listAccounts[position].title, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+    inner class AccountAdapter : BaseAdapter {
+
+        private var accList = ArrayList<MyAccount>()
+        private var context: Context? = null
+
+        constructor(context: Context, notesList: ArrayList<MyAccount>) : super() {
+            this.accList = notesList
+            this.context = context
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+
+            val view: View?
+            val vh: ViewHolder
+
+            if (convertView == null) {
+                view = layoutInflater.inflate(R.layout.activity_listview, parent, false)
+                vh = ViewHolder(view)
+                view.tag = vh
+            } else {
+                view = convertView
+                vh = view.tag as ViewHolder
             }
+
+            vh.accountTitle.text = accList[position].title
+            vh.accountContent.text = accList[position].content
+
+            return view
         }
-        backButton()
+
+        override fun getItem(position: Int): Any {
+            return accList[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            return accList.size
+        }
     }
 
-    /**
-     *
-     * Triangle up top
-     * WAB 4/24/18
-     */
-    fun backButton() {
-        val back = findViewById<View>(R.id.imageView) as ImageView
-        back.setOnClickListener { Toast.makeText(this@MainActivity, "To be implemented later ", Toast.LENGTH_SHORT).show() }
-    }
+    private class ViewHolder(view: View?) {
+        val accountTitle: TextView = view?.findViewById(R.id.label) as TextView
+        val accountContent: TextView = view?.findViewById(R.id.content) as TextView
 
-    /**
-     * Method to show pop-up screen. String s is header of popup depending on switch statement above
-     * @param s
-     * WAB 4/24/18
-     */
-
-    fun popUp(s: String) {
-
-        val inflater = LayoutInflater.from(this)
-        //Need to inflate the new page to root
-        val layout = inflater.inflate(R.layout.layout_custom_dialog, null)
-        //density helps make a cleaner popup
-        val density = this@MainActivity.resources.displayMetrics.density
-        val pw = PopupWindow(layout, density.toInt() * 440, density.toInt() * 300, true)
-        //set up header
-        (layout.findViewById<View>(R.id.h1) as TextView).text = s
-        //Button to close the pop-up
-        (layout.findViewById<View>(R.id.button) as Button).setOnClickListener {
-            pw.dismiss()
-            //close
-        }
-        //tapping outside makes it close
-        pw.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-
-        //pop-up in the center
-        pw.showAtLocation(layout, Gravity.CENTER, 0, 0)
+        //  if you target API 26, you should change to:
+//        init {
+//            this.tvTitle = view?.findViewById<TextView>(R.id.tvTitle) as TextView
+//            this.tvContent = view?.findViewById<TextView>(R.id.tvContent) as TextView
+//        }
     }
 }
+    class MyAccount {
+
+        var id: Int? = null
+        var title: String? = null
+        var content: String? = null
+
+        constructor(id: Int, title: String, content: String) {
+            this.id = id
+            this.title = title
+            this.content = content
+        }
+
+    }
